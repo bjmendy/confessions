@@ -2,9 +2,10 @@
   "name": "confessions",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "./server/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./server/app.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/tlippincott/confessions/issues"
   },
-  "homepage": "https://github.com/tlippincott/confessions#readme"
+  "homepage": "https://github.com/tlippincott/confessions#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "hbs": "^4.0.1",
+    "mongoose": "^4.8.7",
+    "path": "^0.12.7"
+  }
 }
