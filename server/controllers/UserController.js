@@ -6,7 +6,7 @@ var bcrypt = require('bcryptjs');
 //app.use(/user) this denotes that every route in this controller starts with /user!!!
 
 router.get('/', function(request, response){
-  response.render('login', {})
+  response.render('registerLogin', {})
 });
 
 router.post('/', function(request, response){
@@ -24,14 +24,14 @@ User.findOne({username: request.body.username}), function(error, user){
 				response.redirect('/confessions')
 
 			}else{
-				response.render('register', {message: 'username was taken!'})
+				response.render('registerLogin', {message: 'username was taken!'})
 			}
 			}
 		})
 	}
 }
 
-router.get('/registration', function(request, response){
+router.get('/registerLogin', function(request, response){
 //CRYPTION
 
 bcrypt.genSalt(10, function(error, salt){
@@ -51,7 +51,7 @@ bcrypt.genSalt(10, function(error, salt){
 				response.redirect('/confessions')
 			
 			}else{
-				response.redirect('/registration')
+				response.redirect('/registerLogin')
 			}
 			}
 		})
@@ -65,12 +65,12 @@ bcrypt.genSalt(10, function(error, salt){
 
 router.get('/logout', function(request, response){
 	request.session.destroy(function(error){
-		response.redirect('/login');
+		response.redirect('/registerLogin');
 	})
 });
 
 //registration
-router.post('/registration', function(request, response){
+router.post('/registerLogin', function(request, response){
 	console.log(request.session, " this is our session object");
 
 	User.create(request.body, function(error, user){
@@ -82,7 +82,7 @@ router.post('/registration', function(request, response){
 			response.redirect('/confessions')
 
 		}else{
-			response.render('register,' {message: "username not found"})
+			response.render('registerLogin,' {message: "username not found"})
 		}
 		}
 	})
