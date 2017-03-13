@@ -12,7 +12,7 @@ router.get('/confessions', function(request, response){
 }); 
 
 router.post('/', function(request, response){
-	var confession = new Confessions({name: request.body.username, confession: request.body.confession});
+	var confession = new Confession({name: request.body.username, confession: request.body.confession});
 	confession.save();
 	response.redirect("/confessions");
 
