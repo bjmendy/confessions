@@ -3,7 +3,7 @@
 </header>
 <body>
 <div id="column-left">
-	<center>Your Name</center>
+	<center>{{name id goes here}}</center>
 	<br>
 	<br>
 	<center>Your Posts</center>
@@ -20,10 +20,51 @@
 <div id="column-right">
 	<br>
 	<h2>Post Your Confession</h2>
-	<form action="/confessions" method="POST">
-		<input type="text" placeholder="type your confession" name="confessionBox" value="">
-			<input type="submit" value="submit"/>
+		<div id="confessionsBox" align="center">
+			<form action="/confessions" method="POST">
+				<input type="text" placeholder="type your confession" name="confessionBox" value=""/>
+				<input type="submit" value="Post"/>
+			</form>
 
+	<div id="schoolFeed" align="center">
+		<h2>School</h2>
+			{{this is where we will have the school confession feed fill in}}
+	</div>
+			<div id="countdownTimerSchool" align="right">
+				(countdown timer)
+			</div>
+
+	<br>
+
+	<div id="relationshipsFeed" align="center">
+		<h2>Relationships</h2>
+			{{this is where we will have the relationships confession feed fill in}}
+	</div>
+
+			<div id="countdownTimerRelationships" align="right">
+				(countdown timer)
+			</div>
+
+	<br>
+
+	<div id="workFeed" align="center">
+		<h2>Work</h2>
+			{{this is where we will have the work confessions feed fill in}}
+	</div>
+			<div id="countdownTimerWork" align="right">
+				(countdown timer)
+			</div>
+</div>
+
+
+
+
+
+
+
+
+
+</div>
 
 </body>
 <footer>
