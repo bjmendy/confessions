@@ -89,5 +89,4 @@ router.post('/registration', function(request, response){
 });
 
 
-
 module.exports = router;
