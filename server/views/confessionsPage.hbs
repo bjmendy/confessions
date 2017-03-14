@@ -1,55 +1,55 @@
-{{!-- Div for header --}}
-<div class="header" id="confessionHeader">
-    <center><h1>Confessions</h1></center>
+<div class="contianer">	
+	{{!-- Div for header --}}
+	<div class="header" id="confessionHeader">
+	</div>
+	{{!-- body div, where posts will be --}}
+	<div class="body" id="container">
+		{{!-- this is for the left side of the page, which will track your current posts --}}
+	    <div id="column-left">
+	        <center>{{!-- {{name id goes here}} --}}</center>
+	    <br>
+	    <br>
+	        <center>Your Posts</center>
+	        <div id="myPosts">
+	            <h2 align="left">{{category}}</h2>
+	            <p>{{confessionText}}</p>
+	        </div>
+	        {{!-- countdown timers show us how long a post has left to live--}}
+	        <div id="countdownTimerLeft" align="right">
+	            (countdown timer)
+	        </div>
+	    </div>
+	    {{!-- the right side column will be the profile feed, showing all confessions in real time, also will be where your posts are--}}
+	    <div id="column-right">
+	    <br>
+	        <h2>Post Your Confession</h2>
+	        {{!-- this box is where you will type in your posts, and and submit them out--}}
+	        <div id="confessionsBox" align="center">
+	            <form action="/confessions" method="POST">
+	                <input type="text" placeholder="type your confession" name="confessionBox" value=""/>
+	                <input type="submit" value="Post"/>
+	                {{!-- need check box to include name if wanted--}}
+	            </form>
+	     	{{!-- this is where the feed comes together --}}
+	        <div id="feed" align="center">
+	            <div id="category"><h2>{{category}}</h2></div>
+	            <div id="name">{{!-- included name if box was checked, otherwise hidden div--}}</div>
+	            <p>{{confessionText}}</p>
+	        </div>
+	        {{!-- shows the countdown --}}
+	        <div id="countdownTimer" align="right">
+	            (countdown timer)
+	        </div>
+	        {{!-- standard logout button --}}
+	        <div id="logoutButton" align="center">
+	        <button id="logout">LOGOUT</button>
+	        {{!-- this should link back via handlebars back to the homepage
+	         --}}
+	         </div>
+	     </div>
+	</div>
+	{{!-- made by us--}}
+	<div class="footer">
+	    <center>Made by: Terry, Nate and Bridjet -- General Assembly WDI 7, 2017</center>
+	</div>
 </div>
-{{!-- body div, where posts will be --}}
-<div class="body" id="container">
-	{{!-- this is for the left side of the page, which will track your current posts --}}
-    <div id="column-left">
-        <center>{{!-- {{name id goes here}} --}}</center>
-    <br>
-    <br>
-        <center>Your Posts</center>
-        <div id="myPosts">
-            <h2 align="left">{{category}}</h2>
-            <p>{{confessionText}}</p>
-        </div>
-        {{!-- countdown timers show us how long a post has left to live--}}
-        <div id="countdownTimerLeft" align="right">
-            (countdown timer)
-        </div>
-    </div>
-    {{!-- the right side column will be the profile feed, showing all confessions in real time, also will be where your posts are--}}
-    <div id="column-right">
-    <br>
-        <h2>Post Your Confession</h2>
-        {{!-- this box is where you will type in your posts, and and submit them out--}}
-        <div id="confessionsBox" align="center">
-            <form action="/confessions" method="POST">
-                <input type="text" placeholder="type your confession" name="confessionBox" value=""/>
-                <input type="submit" value="Post"/>
-                {{!-- need check box to include name if wanted--}}
-            </form>
-     	{{!-- this is where the feed comes together --}}
-        <div id="feed" align="center">
-            <div id="category"><h2>{{category}}</h2></div>
-            <div id="name">{{!-- included name if box was checked, otherwise hidden div--}}</div>
-            <p>{{confessionText}}</p>
-        </div>
-        {{!-- shows the countdown --}}
-        <div id="countdownTimer" align="right">
-            (countdown timer)
-        </div>
-        {{!-- standard logout button --}}
-        <div id="logoutButton" align="center">
-        <button id="logout">LOGOUT</button>
-        {{!-- this should link back via handlebars back to the homepage
-         --}}
-         </div>
-     </div>
-</div>
-{{!-- made by us--}}
-<div class="footer">
-    <center>Made by: Terry, Nate and Bridjet -- General Assembly WDI 7, 2017</center>
-</div>
-
