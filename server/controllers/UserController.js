@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/User');
+var User = require('../models/User.js');
 var bcrypt = require('bcryptjs');
+var UserController = require('../controllers/UserController.js');
+var ConfessionsController = require('../controllers/ConfessionsController.js');
 
 //app.use(/user) this denotes that every route in this controller starts with /user!!!
 
@@ -15,27 +17,27 @@ User.findOne({username: request.body.username}), function(error, user){
 	if (user){
 
 		bcypt.compare(password, user.password, function(error, match){
-			//this moethod returns true or false
+			//this method returns true or false
 			//true the passwords match
 			if(match){
 				request.session.username = user.username
 				request.session.userId = user.id 
 				request.session.loggedIn = true
-				response.redirect('/confessions')
+				response.redirect('/confessionsPage')
 
 			}else{
 				response.render('registerLogin', {message: 'username was taken!'})
 			}
-			}
-		})
+			})
+		}
 	}
-}
+})
 
 router.get('/registerLogin', function(request, response){
 //CRYPTION
 
 bcrypt.genSalt(10, function(error, salt){
-	bcrypt.hash(request.body.password, salt function(error, hash){
+	bcrypt.hash(request.body.password, salt, function(error, hash){
 		var hashedPasswordObject = {};
 
 		hashedPasswordObject.username = request.body.username;
@@ -48,20 +50,16 @@ bcrypt.genSalt(10, function(error, salt){
 				request.session.username = user.username;
 				request.session.userId = user.id;
 				request.session.loggedIn = true;
-				response.redirect('/confessions')
+				response.redirect('/confessionsPage')
 			
 			}else{
 				response.redirect('/registerLogin')
 			}
-			}
+			})
 		})
 	})
 })
 
-})
-
-
-});
 
 router.get('/logout', function(request, response){
 	request.session.destroy(function(error){
@@ -69,7 +67,14 @@ router.get('/logout', function(request, response){
 	})
 });
 
+
+
 //registration
+router.get('/registerLogin', function(request, response){
+  response.render('registerLogin', {})
+});
+
+
 router.post('/registerLogin', function(request, response){
 	console.log(request.session, " this is our session object");
 
@@ -79,14 +84,14 @@ router.post('/registerLogin', function(request, response){
 			request.session.userId = user.id
 			request.session.loggedIn = true
 
-			response.redirect('/confessions')
+			response.redirect('/confessionsPage')
 
 		}else{
-			response.render('registerLogin,' {message: "username not found"})
+			response.render('registerLogin', {message: "username not found"})
 		}
-		}
+		})
 	})
-});
 
 
 module.exports = router;
+

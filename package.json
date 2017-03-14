@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/tlippincott/confessions#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "express-session": "^1.15.1",
     "gulp": "^3.9.1",
     "gulp-less": "^3.3.0",
     "gulp-watch": "^4.3.11",
