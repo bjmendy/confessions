@@ -60,7 +60,6 @@ bcrypt.genSalt(10, function(error, salt){
 
 })
 
-
 });
 
 router.get('/logout', function(request, response){
