@@ -60,12 +60,6 @@ bcrypt.genSalt(10, function(error, salt){
 	})
 })
 
-<<<<<<< HEAD
-})
-
-});
-=======
->>>>>>> myBranch
 
 router.get('/logout', function(request, response){
 	request.session.destroy(function(error){
