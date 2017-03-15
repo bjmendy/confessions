@@ -1,53 +1,66 @@
 {{!-- this is the top part that gives us tabs, and also how we will switch them over --}}
 <div class="bod">
-  <div class="form">
-    <ul class="tab-group">
-      <li class="tab active"><a href="#login">Log In</a></li>
-      <li class="tab"><a href="#signup">Sign Up!</a></li>
-    </ul>
-  {{!-- this only appears after you try to log in --}}
-    <div class="tab-content">
-      <div id="login">
-        {{#if failedLogin}}
-          <h1>Oops! Try Again.</h1>
-          <h3>Usercode And Password Incorrect</h3>
-        {{else}}
-          <h1>Welcome Back!</h1>
-        {{/if}}
-    {{!-- this shows within the tab box, and when you start typing it pops the new label above it, this starts on the tab that is for login--}}
-        <form action="/user/login" method="POST">
-          <div class="field-wrap">
-            <label>
-              <span class="oldLabel">Username</span><span class="req">*</span><span class="newLabel">Here's Johnny!</span>
-            </label>
-            <input type="text" name="username" required autocomplete="off"/>
-          </div>          
-          <div class="field-wrap">
-            <label>
-              <span class="oldLabel">Password</span><span class="req">*</span><span class="newLabel">Are You Sure?</span>
-            </label>
-            <input type="password" name="password" required autocomplete="off"/>
-           </div>
-      {{!-- comes up when you forgot to put a password in --}}          
-            <p class="forgot"><a href="#">Forgot Password?</a></p>
-      {{!-- the login button --}}          
-            <button class="button button-block" name="button" value="login"/>Log In</button>
-        </form>
+<div class="form">
+  <ul class="tab-group">
+    <li class="tab active"><a href="#login">Log In</a></li>
+    <li class="tab"><a href="#signup">Sign Up!</a></li>
+  </ul>
+{{!-- this only appears after you try to log in --}}
+  <div class="tab-content">
+    <div id="login">
+
+    {{#if notRegistered}}
+      <div id="modal" class="modal showModal">
+        <div class="modal-guts">
+          <h2>The username Is Not Currently Registered</h2>
+          <p>Please click the Register tab or click the OK button to try another login.</p>
+          <button id="closeModal" class="button button-block">OK</button>
+        </div>
       </div>
-  {{!-- this is the start of the signup tab, the first block will be for your name, followed by last name. a place to add a picture url, give yourself a username and password--}}
-      <div id="signup">   
-        <h1>Sign Up</h1>
-        <form action="/user/register" method="POST">
-          <div class="top-row">
-            <div class="field-wrap">
-              <label>First Name<span class="req">*</span></label>
-              <input type="text" name="firstName" required autocomplete="off"/>
-            </div>
-            <div class="field-wrap">
-              <label>Last Name<span class="req">*</span></label>
-              <input type="text" name="lastName" required autocomplete="off"/>
-            </div>
+      <div id="modal-overlay" class="modal-overlay showModal"></div>
+    {{/if}}
+
+      {{#if failedLogin}}
+        <h1>Oops! Try Again.</h1>
+        <h3>Usercode And Password Incorrect</h3>
+      {{else}}
+        <h1>Welcome Back!</h1>
+      {{/if}}
+  {{!-- this shows within the tab box, and when you start typing it pops the new label above it, this starts on the tab that is for login--}}
+      <form action="/login" method="POST">
+        <div class="field-wrap">
+          <label>
+            <span class="oldLabel">Username</span><span class="req">*</span><span class="newLabel">Here's Johnny!</span>
+          </label>
+          <input type="text" name="username" required autocomplete="off"/>
+        </div>          
+        <div class="field-wrap">
+          <label>
+            <span class="oldLabel">Password</span><span class="req">*</span><span class="newLabel">Are You Sure?</span>
+          </label>
+          <input type="password" name="password" required autocomplete="off"/>
+         </div>
+    {{!-- comes up when you forgot to put a password in --}}          
+          <p class="forgot"><a href="#">Forgot Password?</a></p>
+    {{!-- the login button --}}          
+          <button type="submit" class="button button-block" name="button" value="login"/>Log In</button>
+      </form>
+    </div>
+
+{{!-- this is the start of the signup tab, the first block will be for your name, followed by last name. a place to add a picture url, give yourself a username and password--}}
+    <div id="signup">   
+      <h1>Sign Up</h1>
+      <form action="/register" method="POST">
+        <div class="top-row">
+          <div class="field-wrap">
+            <label>First Name<span class="req">*</span></label>
+            <input type="text" name="firstName" required autocomplete="off"/>
           </div>
+          <div class="field-wrap">
+            <label>Last Name<span class="req">*</span></label>
+            <input type="text" name="lastName" required autocomplete="off"/>
+          </div>
+        </div>
          {{!--    <div class="field-wrap">
               <label>
                 <span class="oldLabel">Profile Picture URL</span><span class="newLabel">Say Cheese!</span>
