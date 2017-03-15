@@ -14,9 +14,9 @@
 	        <center>{{!-- {{name id goes here}} --}}</center>
 	    <br>
 	    <br>
-	        <center>Your Posts</center>
+	        <h1>Your Posts</h1>
 	        <div id="myPosts">
-	            <h2 align="left">{{category}}</h2>
+	            <h2>{{category}}</h2>
 	            <p>{{confessionText}}</p>
 	        </div>
 	        {{!-- countdown timers show us how long a post has left to live--}}
@@ -30,9 +30,11 @@
 	        <h2>Post Your Confession</h2>
 	        {{!-- this box is where you will type in your posts, and and submit them out--}}
 	        <div id="confessionsBox" align="center">
-	            <form action="/" method="POST">
-	                <input type="text" placeholder="type your confession" name="confessionBox" value=""/>
-	                <input type="submit" value="Post"/>
+	            <form action="/" method="POST" class="confForm">
+	            	<textarea type="text" name="confessionBox" value="" rows="1" cols="20"></textarea>
+	                {{!-- <input type="text" name="confessionBox" value=""/> --}}
+	                <button type="submit" class="postBtn">Post!</button>
+	                {{!-- <input type="submit" value="Post" /> --}}
 	                {{!-- need check box to include name if wanted--}}
 	            </form>
 	     	{{!-- this is where the feed comes together --}}
@@ -42,7 +44,7 @@
 	            <p>{{confessionText}}</p>
 	        </div>
 	        {{!-- shows the countdown --}}
-	        <div id="countdownTimer" align="right">
+	        <div id="countdownTimer" class="ctdTimer">
 	            (countdown timer)
 	        </div>
 	        {{!-- standard logout button --}}	      

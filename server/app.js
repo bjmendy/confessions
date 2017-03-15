@@ -20,7 +20,9 @@ app.use(session({
 	saveUninitialized: true,
 	cookie: {secure: false}
 }))
-
+app.get('/confessions', function(req, res){
+	res.render('confessionsPage')
+})
 //express framework node.js syntax
 var authenticateRoute = function(request, response, next){
 	if(request.originalUrl === '/' || request.originalUrl === '/'){
@@ -41,9 +43,9 @@ var UserController = require('./controllers/UserController');
 var ConfessionsController = require('./controllers/ConfessionsController');
 
 
-app.get('/', function(req, res){
-	res.render('registerLogin')
-}) //this will grab the registerLogin page when the address is made
+// app.get('/', function(req, res){
+// 	res.render('registerLogin')
+// }) //this will grab the registerLogin page when the address is made
 
 app.use('/', UserController);
 app.use('/confessions', ConfessionsController);
