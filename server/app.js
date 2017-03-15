@@ -20,6 +20,7 @@ app.use(session({
 	saveUninitialized: true,
 	cookie: {secure: false}
 }))
+<<<<<<< HEAD
 
 // express framework node.js syntax
 // var authenticateRoute = function(request, response, next){
@@ -36,11 +37,39 @@ app.use(session({
 // 	}
 
 // app.use(authenticateRoute); //set this before controller!!!! It will run first!!!
+=======
+app.get('/confessions', function(req, res){
+	res.render('confessionsPage')
+})
+//express framework node.js syntax
+var authenticateRoute = function(request, response, next){
+	if(request.originalUrl === '/' || request.originalUrl === '/'){
+		next()
+	}
+		else {
+			if(!request.session.loggedIn){
+				response.redirect('/confessions')
+			}else{
+				next()
+			}
+		}
+	}
+
+app.use(authenticateRoute); //set this before controller!!!! It will run first!!!
+>>>>>>> 218c5a08eaaa4f49dc56b5d95747009dfd211b71
 
 var UserController = require('./controllers/UserController');
 var ConfessionsController = require('./controllers/ConfessionsController');
 
+<<<<<<< HEAD
  app.use('/confessions', ConfessionsController);
+=======
+
+// app.get('/', function(req, res){
+// 	res.render('registerLogin')
+// }) //this will grab the registerLogin page when the address is made
+
+>>>>>>> 218c5a08eaaa4f49dc56b5d95747009dfd211b71
 app.use('/', UserController);
 
 

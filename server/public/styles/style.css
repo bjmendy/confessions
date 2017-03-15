@@ -258,15 +258,37 @@ textarea {
   display: inline-block;
 }
 #column-left {
-  background-color: white;
+  background-color: rgba(0, 174, 125, 0.9);
   display: inline-block;
   float: left;
   height: 100vh;
   width: 25%;
   top: 0;
+  text-align: center;
+}
+.confForm {
+  text-decoration: none;
+  background-image: none;
+  background-image: url('../background/Confessions.png');
+  background-repeat: none;
+  background-position: 50% 0;
+  background-size: cover;
+  word-wrap: break-word;
+  word-break: break-all;
+  height: 80px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 15vh;
+  text-align: center;
+}
+textarea {
+  resize: none;
+}
+.postBtn {
+  float: right;
 }
 #column-right {
-  background-color: orange;
+  background-color: rgba(39, 65, 82, 0.9);
   display: inline-block;
   height: 100vh;
   width: 75%;
@@ -276,10 +298,10 @@ textarea {
 .footer {
   background-color: rgba(128, 128, 128, 0.8);
   color: black;
+  margin-top: -20px;
   height: 20px;
   text-align: center;
   position: absolute;
-  background-attachment: scroll;
   bottom: 0;
   width: 100vw;
   clear: both;
