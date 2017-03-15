@@ -34,3 +34,8 @@ $('.tab a').on('click', function (e) {
   $('.tab-content > div').not(target).hide(); 
   $(target).fadeIn(600);  
 });
+
+$('#closeModal').on('click', function() {
+  $(this).parent().parent().addClass('hideModal');
+  $('#modal-overlay').addClass('hideModal');
+})

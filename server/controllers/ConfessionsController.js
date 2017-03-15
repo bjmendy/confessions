@@ -2,13 +2,14 @@ var express = require('express');
 var router = express.Router();
 var Confession = require('../models/Confession.js');
 
-router.get('/confessions', function(request, response){
+router.get('/', function(request, response){
 	console.log(request.session)
-	Confession.find(function(error, confessions){
-		console.log(confessions);
-		//searches the database
-	response.render('confessions', {confessionArray: confessions});
-	});
+	response.send('Confession Page is Here!');
+	// Confession.find(function(error, confessions){
+	// 	console.log(confessions);
+	// 	//searches the database
+	// response.render('confessions', {confessionArray: confessions});
+	// });
 }); 
 
 router.post('/', function(request, response){
