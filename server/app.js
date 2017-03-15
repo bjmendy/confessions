@@ -14,10 +14,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-app.get('/', function(req, res){
-	res.render('confessionsPage')
-})
-
 app.use(session({
 	secret: " this is our secret salt",
 	resave: false,
@@ -27,12 +23,12 @@ app.use(session({
 
 //express framework node.js syntax
 var authenticateRoute = function(request, response, next){
-	if(request.originalUrl === '/registerLogin' || request.originalUrl === '/registerLogin'){
+	if(request.originalUrl === '/' || request.originalUrl === '/'){
 		next()
 	}
 		else {
 			if(!request.session.loggedIn){
-				response.redirect('/registerLogin')
+				response.redirect('/confessions')
 			}else{
 				next()
 			}
@@ -45,12 +41,12 @@ var UserController = require('./controllers/UserController');
 var ConfessionsController = require('./controllers/ConfessionsController');
 
 
-app.get('/registerLogin', function(req, res){
+app.get('/', function(req, res){
 	res.render('registerLogin')
 }) //this will grab the registerLogin page when the address is made
 
 app.use('/', UserController);
-app.use('/confessionsPage', ConfessionsController);
+app.use('/confessions', ConfessionsController);
 
 //this is where the server is being shown 
 server.listen(3000, function(){

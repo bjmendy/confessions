@@ -11,7 +11,7 @@ router.get('/', function(request, response){
   response.render('registerLogin', {})
 });
 
-router.post('/', function(request, response){
+router.post('/registerLogin', function(request, response){
 	var loginUsername = request.body.username;
 User.findOne({username: request.body.username}), function(error, user){
 	if (user){
@@ -76,13 +76,15 @@ router.get('/registerLogin', function(request, response){
 
 
 router.post('/registerLogin', function(request, response){
-	console.log(request.session, " this is our session object");
+	console.log(request.body);
 
 	User.create(request.body, function(error, user){
 		if(user){
 			request.session.username = user.username
 			request.session.userId = user.id
 			request.session.loggedIn = true
+
+			console.log(request.body)
 
 			response.redirect('/confessionsPage')
 
