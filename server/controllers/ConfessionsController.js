@@ -4,20 +4,13 @@ var Confession = require('../models/Confession.js');
 
 router.get('/', function(request, response){
 	console.log(request.session)
-<<<<<<< HEAD
-	Confession.find(function(error, confessions){
-		console.log(confessions);
-		//searches the database
-	response.render('confessionsPage', {confessionArray: confessions});
-	});
-=======
-	response.send('Confession Page is Here!');
+	//response.send('Confession Page is Here!');
 	// Confession.find(function(error, confessions){
 	// 	console.log(confessions);
 	// 	//searches the database
 	// response.render('confessions', {confessionArray: confessions});
 	// });
->>>>>>> login
+	response.render('confessionsPage');
 }); 
 
 router.post('/', function(request, response){
