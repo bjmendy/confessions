@@ -36,6 +36,7 @@ $('.tab a').on('click', function (e) {
 });
 
 
+
 //timer functions
 window.setTimeout("Tick()", 1000);
 
@@ -104,3 +105,9 @@ return (Time < 10) ? "0" + Time : + Time;
 
 
 Timer.innerHTML = TimeStr;
+
+$('#closeModal').on('click', function() {
+  $(this).parent().parent().addClass('hideModal');
+  $('#modal-overlay').addClass('hideModal');
+})
+
