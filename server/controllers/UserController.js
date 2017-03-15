@@ -32,13 +32,13 @@ router.post('/login', function(request, response) {
 				}
 				else {
 					console.log('redirect login hit');
-					response.redirect('/login');
+					response.redirect('/user/login');
 				}
 			})
 		}
 		else {
 			console.log('redirect register hit');
-			response.redirect('/register');
+			response.redirect('/user/register');
 		}
 	})
 })
@@ -64,7 +64,7 @@ router.post('/register', function(request, response) {
 						}
 						else {
 							console.log(error);
-							response.redirect('/login');
+							response.redirect('/user/login');
 						}
 					})
 				})
@@ -78,7 +78,7 @@ router.post('/register', function(request, response) {
 
 router.get('/logout', function(request, response) {
 	request.session.destroy(function(error) {
-		response.redirect('/login');
+		response.redirect('/user/login');
 	})
 });
 

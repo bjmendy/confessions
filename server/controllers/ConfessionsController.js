@@ -10,13 +10,23 @@ router.get('/', function(request, response){
 	// 	//searches the database
 	// response.render('confessions', {confessionArray: confessions});
 	// });
+	console.log('confessions');
 	response.render('confessionsPage');
 }); 
 
 router.post('/', function(request, response){
-	var confession = new Confession({name: request.body.username, confession: request.body.confession});
-	confession.save();
-	response.redirect("/");
+	console.log('confessions post');
+	console.log(request.session.username);
+	console.log(request.body.confessionBox);
+	var confession = new Confession({username: request.session.username, confessionText: request.body.confessionBox});
+	confession.save(function(error){
+		if (error) {
+			console.log(error);
+		}else{
+			console.log('meow');
+		}
+	});
+	response.redirect("/confessions");
 
 });
 

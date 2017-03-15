@@ -27,7 +27,7 @@
         <h1>Welcome Back!</h1>
       {{/if}}
   {{!-- this shows within the tab box, and when you start typing it pops the new label above it, this starts on the tab that is for login--}}
-      <form action="/login" method="POST">
+      <form action="/user/login" method="POST">
         <div class="field-wrap">
           <label>
             <span class="oldLabel">Username</span><span class="req">*</span><span class="newLabel">Here's Johnny!</span>
@@ -50,7 +50,7 @@
 {{!-- this is the start of the signup tab, the first block will be for your name, followed by last name. a place to add a picture url, give yourself a username and password--}}
     <div id="signup">   
       <h1>Sign Up</h1>
-      <form action="/register" method="POST">
+      <form action="/user/register" method="POST">
         <div class="top-row">
           <div class="field-wrap">
             <label>First Name<span class="req">*</span></label>

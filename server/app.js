@@ -31,12 +31,12 @@ app.use(session({
 
 //express framework node.js syntax
 var authenticateRoute = function(request, response, next){
-	if(request.originalUrl === '/login' || request.originalUrl === '/register') {  // the login or register page
+	if(request.originalUrl === '/user/login' || request.originalUrl === '/user/register') {  // the login or register page
 		next()
 	}
 	else {
 		if(!request.session.loggedIn) {  // if user is not logged in, redirect
-			response.redirect('/login')  // them to the login page
+			response.redirect('/user/login')  // them to the login page
 		}else{
 			next()
 		}
@@ -45,7 +45,7 @@ var authenticateRoute = function(request, response, next){
 
 app.use(authenticateRoute); //set this before controller!!!! It will run first!!!
 
-app.use('/', UserController);
+app.use('/user', UserController);
 app.use('/confessions', ConfessionsController);
 
 //this is where the server is being shown 
