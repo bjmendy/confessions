@@ -2,19 +2,19 @@ var express = require('express');
 var router = express.Router();
 var Confession = require('../models/Confession.js');
 
-router.get('/confessions', function(request, response){
+router.get('/', function(request, response){
 	console.log(request.session)
 	Confession.find(function(error, confessions){
 		console.log(confessions);
 		//searches the database
-	response.render('confessions', {confessionArray: confessions});
+	response.render('confessionsPage', {confessionArray: confessions});
 	});
 }); 
 
-router.post('/confessions', function(request, response){
+router.post('/', function(request, response){
 	var confession = new Confession({name: request.body.username, confession: request.body.confession});
 	confession.save();
-	response.redirect("/confessions");
+	response.redirect("/");
 
 });
 
@@ -26,7 +26,7 @@ Confession.findById(id, function(err, confession){
 	confession.name = newInfo.username;
 
 		confession.save();
-		response.redirect('/confessions');
+		response.redirect('/');
 })
 	});
 

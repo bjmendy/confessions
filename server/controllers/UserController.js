@@ -7,11 +7,9 @@ var ConfessionsController = require('../controllers/ConfessionsController.js');
 
 //app.use(/user) this denotes that every route in this controller starts with /user!!!
 
-router.get('/', function(request, response){
-  response.render('registerLogin', {})
-});
 
-router.post('/', function(request, response){
+
+router.post('/user/login', function(request, response){
 	var loginUsername = request.body.username;
 User.findOne({username: request.body.username}), function(error, user){
 	if (user){
@@ -26,15 +24,33 @@ User.findOne({username: request.body.username}), function(error, user){
 				response.redirect('/confessions')
 
 			}else{
-				response.render('registerLogin', {message: 'username was taken!'})
+				response.render('/user/login', {message: 'username was taken!'})
 			}
 			})
 		}
 	}
 })
 
-router.get('/', function(request, response){
-//CRYPTION
+
+router.get('/logout', function(request, response){
+	request.session.destroy(function(error){
+		response.redirect('/');
+	})
+});
+
+
+
+//registration
+// router.get('/', function(request, response){
+//   response.render('registerLogin', {})
+// });
+
+
+router.post('/user/register', function(request, response){
+	console.log(request.body);
+
+	router.get('/', function(request, response){
+// CRYPTION
 
 bcrypt.genSalt(10, function(error, salt){
 	bcrypt.hash(request.body.password, salt, function(error, hash){
@@ -60,24 +76,6 @@ bcrypt.genSalt(10, function(error, salt){
 	})
 })
 
-
-router.get('/logout', function(request, response){
-	request.session.destroy(function(error){
-		response.redirect('/');
-	})
-});
-
-
-
-//registration
-router.get('/', function(request, response){
-  response.render('registerLogin', {})
-});
-
-
-router.post('/', function(request, response){
-	console.log(request.body);
-
 	User.create(request.body, function(error, user){
 		if(user){
 			request.session.username = user.username
@@ -89,10 +87,14 @@ router.post('/', function(request, response){
 			response.redirect('/confessions')
 
 		}else{
-			response.render('registerLogin', {message: "username not found"})
+			response.render('/user/register', {message: "username not found"})
 		}
 		})
 	})
+
+router.get('/', function(request, response){
+  response.render('registerLogin', {})
+});
 
 
 module.exports = router;

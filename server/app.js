@@ -21,27 +21,28 @@ app.use(session({
 	cookie: {secure: false}
 }))
 
-//express framework node.js syntax
-var authenticateRoute = function(request, response, next){
-	if(request.originalUrl === '/' || request.originalUrl === '/'){
-		next()
-	}
-		else {
-			if(!request.session.loggedIn){
-				response.redirect('/confessions')
-			}else{
-				next()
-			}
-		}
-	}
+// express framework node.js syntax
+// var authenticateRoute = function(request, response, next){
+// 	if(request.originalUrl === '/' || request.originalUrl === '/'){
+// 		next()
+// 	}
+// 		else {
+// 			if(!request.session.loggedIn){
+// 				response.redirect('/confessions')
+// 			}else{
+// 				next()
+// 			}
+// 		}
+// 	}
 
-app.use(authenticateRoute); //set this before controller!!!! It will run first!!!
+// app.use(authenticateRoute); //set this before controller!!!! It will run first!!!
 
 var UserController = require('./controllers/UserController');
 var ConfessionsController = require('./controllers/ConfessionsController');
 
+ app.use('/confessions', ConfessionsController);
 app.use('/', UserController);
-app.use('/confessions', ConfessionsController);
+
 
 //this is where the server is being shown 
 server.listen(3000, function(){
