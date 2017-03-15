@@ -15,6 +15,32 @@ router.get('/register', function(request, response) {
   	response.render('registerLogin', {notRegistered: true});
 });
 
+
+router.post('/user/login', function(request, response){
+	// var user = new User({username: request.body.username, password: request.body.password});
+	// user.save();
+
+	// ////////////
+User.findOne({username: request.body.username}), function(error, user){
+	if (user){
+
+		bcypt.compare(password, user.password, function(error, match){ //make an object
+			//this method returns true or false
+			//true the passwords match
+			if(match){
+				request.session.username = user.username
+				request.session.userId = user.id 
+				request.session.loggedIn = true
+				response.redirect('/confessions')
+
+			}else{
+				response.render('/user/login', {message: 'username was taken!'})
+			}
+		})
+			}
+
+		};
+
 router.post('/login', function(request, response) {
 	console.log(request.body);
 	var password = request.body.password;
@@ -34,6 +60,7 @@ router.post('/login', function(request, response) {
 					console.log('redirect login hit');
 					response.redirect('/login');
 				}
+
 			})
 		}
 		else {
@@ -64,23 +91,24 @@ router.post('/register', function(request, response) {
 						}
 						else {
 							console.log(error);
-							response.redirect('/login');
-						}
+						}	response.redirect('/login');
 					})
 				})
+
 			})
-		}
-		else {
-			response.render('registerLogin', {message: 'Sorry, that username is taken'});
 		}
 	})
 })
+// 		else {
+// 			response.render('registerLogin', {message: 'Sorry, that username is taken'});
+// 		}
+// 	})
+// }
 
 router.get('/logout', function(request, response) {
 	request.session.destroy(function(error) {
 		response.redirect('/login');
 	})
-});
+})
 
 module.exports = router;
-

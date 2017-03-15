@@ -29,6 +29,27 @@ app.use(session({
 	cookie: {secure: false}
 }))
 
+
+// express framework node.js syntax
+// var authenticateRoute = function(request, response, next){
+// 	if(request.originalUrl === '/' || request.originalUrl === '/'){
+// 		next()
+// 	}
+// 		else {
+// 			if(!request.session.loggedIn){
+// 				response.redirect('/confessions')
+// 			}else{
+// 				next()
+// 			}
+// 		}
+// 	}
+
+// app.use(authenticateRoute); //set this before controller!!!! It will run first!!!
+
+app.get('/confessions', function(req, res){
+	res.render('confessionsPage')
+})
+
 //express framework node.js syntax
 var authenticateRoute = function(request, response, next){
 	if(request.originalUrl === '/login' || request.originalUrl === '/register') {  // the login or register page
@@ -44,6 +65,18 @@ var authenticateRoute = function(request, response, next){
 }
 
 app.use(authenticateRoute); //set this before controller!!!! It will run first!!!
+
+
+var UserController = require('./controllers/UserController');
+var ConfessionsController = require('./controllers/ConfessionsController');
+
+
+ app.use('/confessions', ConfessionsController);
+
+// app.get('/', function(req, res){
+// 	res.render('registerLogin')
+// }) //this will grab the registerLogin page when the address is made
+
 
 app.use('/', UserController);
 app.use('/confessions', ConfessionsController);
