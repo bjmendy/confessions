@@ -11,7 +11,7 @@ router.get('/', function(request, response){
   response.render('registerLogin', {})
 });
 
-router.post('/registerLogin', function(request, response){
+router.post('/', function(request, response){
 	var loginUsername = request.body.username;
 User.findOne({username: request.body.username}), function(error, user){
 	if (user){
@@ -23,7 +23,7 @@ User.findOne({username: request.body.username}), function(error, user){
 				request.session.username = user.username
 				request.session.userId = user.id 
 				request.session.loggedIn = true
-				response.redirect('/confessionsPage')
+				response.redirect('/confessions')
 
 			}else{
 				response.render('registerLogin', {message: 'username was taken!'})
@@ -33,7 +33,7 @@ User.findOne({username: request.body.username}), function(error, user){
 	}
 })
 
-router.get('/registerLogin', function(request, response){
+router.get('/', function(request, response){
 //CRYPTION
 
 bcrypt.genSalt(10, function(error, salt){
@@ -50,10 +50,10 @@ bcrypt.genSalt(10, function(error, salt){
 				request.session.username = user.username;
 				request.session.userId = user.id;
 				request.session.loggedIn = true;
-				response.redirect('/confessionsPage')
+				response.redirect('/confessions')
 			
 			}else{
-				response.redirect('/registerLogin')
+				response.redirect('/')
 			}
 			})
 		})
@@ -63,19 +63,19 @@ bcrypt.genSalt(10, function(error, salt){
 
 router.get('/logout', function(request, response){
 	request.session.destroy(function(error){
-		response.redirect('/registerLogin');
+		response.redirect('/');
 	})
 });
 
 
 
 //registration
-router.get('/registerLogin', function(request, response){
+router.get('/', function(request, response){
   response.render('registerLogin', {})
 });
 
 
-router.post('/registerLogin', function(request, response){
+router.post('/', function(request, response){
 	console.log(request.body);
 
 	User.create(request.body, function(error, user){
@@ -86,7 +86,7 @@ router.post('/registerLogin', function(request, response){
 
 			console.log(request.body)
 
-			response.redirect('/confessionsPage')
+			response.redirect('/confessions')
 
 		}else{
 			response.render('registerLogin', {message: "username not found"})

@@ -40,11 +40,6 @@ app.use(authenticateRoute); //set this before controller!!!! It will run first!!
 var UserController = require('./controllers/UserController');
 var ConfessionsController = require('./controllers/ConfessionsController');
 
-
-app.get('/', function(req, res){
-	res.render('registerLogin')
-}) //this will grab the registerLogin page when the address is made
-
 app.use('/', UserController);
 app.use('/confessions', ConfessionsController);
 

@@ -11,7 +11,7 @@ router.get('/confessions', function(request, response){
 	});
 }); 
 
-router.post('/', function(request, response){
+router.post('/confessions', function(request, response){
 	var confession = new Confession({name: request.body.username, confession: request.body.confession});
 	confession.save();
 	response.redirect("/confessions");
