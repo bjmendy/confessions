@@ -10,11 +10,14 @@ var ConfessionsController = require('../controllers/ConfessionsController.js');
 
 
 router.post('/user/login', function(request, response){
-	var loginUsername = request.body.username;
+	// var user = new User({username: request.body.username, password: request.body.password});
+	// user.save();
+
+	// ////////////
 User.findOne({username: request.body.username}), function(error, user){
 	if (user){
 
-		bcypt.compare(password, user.password, function(error, match){
+		bcypt.compare(password, user.password, function(error, match){ //make an object
 			//this method returns true or false
 			//true the passwords match
 			if(match){
