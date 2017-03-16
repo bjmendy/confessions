@@ -78,7 +78,6 @@ app.use('/confessions', ConfessionsController);
 //     res.render('registerLogin')
 // }) //this will grab the registerLogin page when the address is made
 
-
 //this is where the server is being shown
 server.listen(3000, function(){
     console.log('yup, server is listening on port 3000');

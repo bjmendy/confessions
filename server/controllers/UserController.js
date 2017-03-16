@@ -17,6 +17,7 @@ router.get('/register', function(request, response) {
 
 
 // router.post('/user/login', function(request, response){
+<<<<<<< HEAD
 // 	User.findOne({username: request.body.username}), function(error, user){
 // 		if (user){
 // 			bcypt.compare(password, user.password, function(error, match){ //make an object
@@ -100,9 +101,15 @@ router.post('/register', function(request, response) {
 
 
 router.get('/logout', function(request, response) {
+
+	request.session.destroy(function(error) {
+		response.redirect('/login');
+	})
+
     request.session.destroy(function(error) {
         response.redirect('/user/login');
     })
+
 })
 
 module.exports = router;
