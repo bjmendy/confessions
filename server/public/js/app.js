@@ -35,11 +35,14 @@ $('.tab a').on('click', function (e) {
   $(target).fadeIn(600);  
 });
 
+$('#closeModal').on('click', function() {
+  $(this).parent().parent().addClass('hideModal');
+  $('#modal-overlay').addClass('hideModal');
+})
 
 
 
 //timer functions
-
 // window.setTimeout("Tick()", 1000);
 
 // function Tick() {
@@ -98,6 +101,7 @@ $('.tab a').on('click', function (e) {
 // Timer.innerHTML = TimeStr;
 // }
 
+// return (Time < 10) ? "0" + Time : + Time;
 
 // function LeadingZero(Time) {
 
@@ -106,18 +110,9 @@ $('.tab a').on('click', function (e) {
 // }
 
 
-// Timer.innerHTML = TimeStr;
-
-// $('#closeModal').on('click', function() {
-//   $(this).parent().parent().addClass('hideModal');
-//   $('#modal-overlay').addClass('hideModal');
-// })
-
-
 //this is to logout//
 $('.logoutButton').on('click', function(request, response){
   req.session.destroy(function(err){
     res.redirect('/login')
   })
 })
-
