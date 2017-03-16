@@ -16,33 +16,34 @@ router.get('/register', function(request, response) {
 });
 
 
-router.post('/user/login', function(request, response){
-    // var user = new User({username: request.body.username, password: request.body.password});
-    // user.save();
+// router.post('/user/login', function(request, response){
+//     // var user = new User({username: request.body.username, password: request.body.password});
+//     // user.save();
 
-    // ////////////
-User.findOne({username: request.body.username}), function(error, user){
-    if (user){
+//     // ////////////
 
-        bcypt.compare(password, user.password, function(error, match){ //make an object
-            //this method returns true or false
-            //true the passwords match
-            if(match){
-                request.session.username = user.username
-                request.session.userId = user.id
-                request.session.loggedIn = true
-                response.redirect('/confessions')
+// User.findOne({username: request.body.username}), function(error, user){
+//     if (user){
 
-            }else{
-                response.render('/user/login', {message: 'username was taken!'})
-            }
-        })
-            }
+//         bcypt.compare(password, user.password, function(error, match){ //make an object
+//             //this method returns true or false
+//             //true the passwords match
+//             if(match){
+//                 request.session.username = user.username
+//                 request.session.userId = user.id
+//                 request.session.loggedIn = true
+//                 response.redirect('/confessions')
 
-        };
+//             }else{
+//                 response.render('/user/login', {message: 'username was taken!'})
+//             }
+//         })
+//             }
+
+//         };
 
 router.post('/login', function(request, response) {
-    console.log(request.body);
+    //console.log(request.body);
     var password = request.body.password;
 
     User.findOne({username: request.body.username}, function(error, user) {
@@ -57,20 +58,20 @@ router.post('/login', function(request, response) {
                     response.redirect('/confessions');  // successful login
                 }
                 else {
-                    console.log('redirect login hit');
+                    //console.log('redirect login hit');
                     response.redirect('/user/login');
                 }
 
             })
         }
         else {
-            console.log('redirect register hit');
+            //console.log('redirect register hit');
             response.redirect('/user/register');
         }
     })
 })
 
-})
+//})
 
 router.post('/register', function(request, response) {
     console.log(request.body);
