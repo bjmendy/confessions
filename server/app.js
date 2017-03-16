@@ -66,6 +66,11 @@ var authenticateRoute = function(request, response, next){
 
 app.use(authenticateRoute); //set this before controller!!!! It will run first!!!
 
+<<<<<<< HEAD
+=======
+app.use('/user', UserController);
+
+>>>>>>> 4d6bafd65191bad46b6939d8e7efd41005bcd845
 var UserController = require('./controllers/UserController');
 var ConfessionsController = require('./controllers/ConfessionsController');
 app.use('/user', UserController);
@@ -81,6 +86,11 @@ app.use('/user', UserController);
 // }) //this will grab the registerLogin page when the address is made
 
 
+<<<<<<< HEAD
+=======
+app.use('/confessions', ConfessionsController);
+
+>>>>>>> 4d6bafd65191bad46b6939d8e7efd41005bcd845
 //this is where the server is being shown 
 server.listen(3000, function(){
 	console.log('yup, server is listening on port 3000');

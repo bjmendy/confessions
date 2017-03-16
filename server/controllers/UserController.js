@@ -70,7 +70,13 @@ router.post('/login', function(request, response) {
 	})
 })
 
+<<<<<<< HEAD
 router.post('/user/register', function(request, response) {
+=======
+})
+
+router.post('/register', function(request, response) {
+>>>>>>> 4d6bafd65191bad46b6939d8e7efd41005bcd845
 	console.log(request.body);
 	User.findOne({username: request.body.username}, function(error, user) {
 		if (!user) {
@@ -91,6 +97,10 @@ router.post('/user/register', function(request, response) {
 						}
 						else {
 							console.log(error);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4d6bafd65191bad46b6939d8e7efd41005bcd845
 							response.redirect('/user/login');
 						}
 
