@@ -46,13 +46,18 @@ router.post('/register', function(request, response) {
             bcrypt.genSalt(10, function(error, salt){
                 bcrypt.hash(request.body.password, salt, function(error, hash){
                     var hashedPasswordObject = {};
-                    hashedPasswordObject.username = request.body.username;
-                    hashedPasswordObject.password = hash;
-                    User.create(hashedPasswordObject, function(error, user){
-                        if (user){
-                            request.session.username = user.username;
-                            request.session.userId = user.id;
-                            request.session.loggedIn = true;
+
+                    hashedPasswordObject.username   = request.body.username;
+                    hashedPasswordObject.password   = hash;
+                    hashedPasswordObject.firstName  = request.body.firstName;
+                    hashedPasswordObject.lastName   = request.body.lastName;
+
+                    User.create(hashedPasswordObject, function(error, user) {
+                        if (user) {
+                            request.session.username    = user.username;
+                            request.session.userId        = user.id;
+                            request.session.loggedIn    = true;
+
                             response.redirect('/confessions');
                         }else{
                             console.log(error);
