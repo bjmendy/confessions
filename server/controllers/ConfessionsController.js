@@ -5,13 +5,11 @@ var Confession = require('../models/Confession.js');
 router.get('/', function(request, response){
 	console.log(request.session)
 	//response.send('Confession Page is Here!');
-	// Confession.find(function(error, confessions){
-	// 	console.log(confessions);
-	// 	//searches the database
-	// response.render('confessions', {confessionArray: confessions});
-	// });
-	console.log('confessions');
-	response.render('confessionsPage');
+	Confession.find(function(error, confessions){
+		console.log(confessions);
+		//searches the database
+	response.render('confessionsPage', {confessionArray: confessions});
+	});
 }); 
 
 router.post('/', function(request, response){
@@ -27,19 +25,18 @@ router.post('/', function(request, response){
 		}
 	});
 	response.redirect("/confessions");
-
 });
 
 router.patch('/:id', function(request, response){
-var id = request.params.id;
-var newInfo = request.body;
+	var id = request.params.id;
+	var newInfo = request.body;
 
-Confession.findById(id, function(err, confession){
-	confession.name = newInfo.username;
+	Confession.findById(id, function(err, confession){
+		confession.name = newInfo.username;
 
-		confession.save();
-		response.redirect('/');
-})
-	});
+			confession.save();
+			response.redirect('/');
+	})
+});
 
 module.exports = router;

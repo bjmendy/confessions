@@ -1,61 +1,54 @@
 <div class="contianer">	
-	{{!-- Div for header --}}
 	<div class="header" id="confessionHeader">
-	  <div id="logoutButton" align="center">
-	        <a href="/user/logout"><button id="logout" class="logoutButton">Log Out</button></a>
-	        {{!-- this should link back via handlebars back to the homepage
-	         --}}
-	         </div>
+		<div id="logoutButton" align="center">
+			<a href="/user/logout"><button id="logout" class="logoutButton">Log Out</button></a>
+		</div>
 	</div>
 	{{!-- body div, where posts will be --}}
 	<div class="body" id="container">
 		{{!-- this is for the left side of the page, which will track your current posts --}}
-	    <div id="column-left">
-	        <center>{{!-- {{name id goes here}} --}}</center>
-	    <br>
-	    <br>
-	        <h1>Your Posts</h1>
-	        <div id="myPosts">
-	            <h2>{{category}}</h2>
-	            <p>{{confessionText}}</p>
-	        </div>
-	        {{!-- countdown timers show us how long a post has left to live--}}
-	        <div id="countdownTimerLeft" align="right">
-	        	{{!-- <div id='timer'></div> --}}
-	        
-	        </div>
-	    </div>
-	    <div id="center"></div>
-	    {{!-- the right side column will be the profile feed, showing all confessions in real time, also will be where your posts are--}}
-	    <div id="column-right">
-	    <br>
-	        <h2>Post Your Confession</h2>
-	        {{!-- this box is where you will type in your posts, and and submit them out--}}
-	        <div id="confessionsBox" align="center">
-	            <form action="/confessions" method="POST" class="confForm">
-	            	<textarea type="text" name="confessionBox" value="" rows="1" cols="20"></textarea>
-	                {{!-- <input type="text" name="confessionBox" value=""/> --}}
-	                <button type="submit" class="postBtn">Post!</button>
-	                {{!-- <input type="submit" value="Post" /> --}}
-
-	                {{!-- need check box to include name if wanted--}}
-	            </form>
-	     	{{!-- this is where the feed comes together --}}
-	        <div id="feed" align="center">
-	            <div id="category"><h2>{{category}}</h2></div>
-	            <div id="name">{{!-- included name if box was checked, otherwise hidden div--}}</div>
-	            <p>{{confessionText}}</p>
-	        </div>
-	        {{!-- shows the countdown --}}
-	        <div id="countdownTimer" class="ctdTimer">
-	         {{!--   <div id='timer'></div> --}}
-
-	        </div>
-	        {{!-- standard logout button --}}	      
-	     </div>
+		<div id="column-left">
+			<center>{{!-- {{name id goes here}} --}}</center>
+			<br>
+			<br>
+			<h1>Your Posts</h1>
+			<div id="myPosts">
+				<h2>{{category}}</h2>
+				<p>{{confessionText}}</p>
+			</div>
+			{{!-- countdown timers show us how long a post has left to live--}}
+			<div id="countdownTimerLeft" align="right">
+				{{!-- <div id='timer'></div> --}}
+		</div>
+	</div>
+	<div id="center"></div>
+		{{!-- the right side column will be the profile feed, showing all confessions in real time, also will be where your posts are--}}
+		<div id="column-right">
+			<br>
+			<h2>Post Your Confession</h2>
+			{{!-- this box is where you will type in your posts, and and submit them out--}}
+			<div id="confessionsBox" align="center">
+				<form action="/confessions" method="POST" class="confForm">
+					<textarea type="text" name="confessionBox" value="" rows="1" cols="20"></textarea>
+					<button type="submit" class="postBtn">Post!</button>
+					{{!-- need check box to include name if wanted--}}
+				</form>
+		{{!-- this is where the feed comes together --}}
+			{{#each confessionArray}}
+				<div id="feed" align="center">
+					<div id="category"><h2>{{category}}</h2></div>
+					<div id="name">{{!-- included name if box was checked, otherwise hidden div--}}</div>
+					<p>{{confessionText}}</p>
+				</div>
+			{{/each}}
+			{{!-- shows the countdown --}}
+			<div id="countdownTimer" class="ctdTimer">
+			{{!--   <div id='timer'></div> --}}
+			</div>      
+		</div>
 	</div>
 	{{!-- made by us--}}
 	<div class="footer">
-	    <center>Made by: Terry, Nate and Bridjet -- General Assembly WDI 7, 2017</center>
+		<center>Made by: Terry, Nate and Bridjet -- General Assembly WDI 7, 2017</center>
 	</div>
 </div>
