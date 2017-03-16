@@ -46,9 +46,9 @@ app.use(session({
 
 // app.use(authenticateRoute); //set this before controller!!!! It will run first!!!
 
-app.get('/confessions', function(req, res){
-	res.render('confessionsPage')
-})
+// app.get('/confessions', function(req, res){
+// 	res.render('confessionsPage')
+// })
 
 //express framework node.js syntax
 var authenticateRoute = function(request, response, next){
@@ -66,12 +66,12 @@ var authenticateRoute = function(request, response, next){
 
 app.use(authenticateRoute); //set this before controller!!!! It will run first!!!
 
-<<<<<<< HEAD
-app.use('/user', UserController);
-=======
-
 var UserController = require('./controllers/UserController');
 var ConfessionsController = require('./controllers/ConfessionsController');
+app.use('/user', UserController);
+
+
+
 
 
  app.use('/confessions', ConfessionsController);
@@ -80,10 +80,6 @@ var ConfessionsController = require('./controllers/ConfessionsController');
 // 	res.render('registerLogin')
 // }) //this will grab the registerLogin page when the address is made
 
-
-app.use('/', UserController);
->>>>>>> a75fe05ae20181ae7225181b2dee47fc4df9def5
-app.use('/confessions', ConfessionsController);
 
 //this is where the server is being shown 
 server.listen(3000, function(){
