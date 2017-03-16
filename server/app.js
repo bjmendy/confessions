@@ -1,11 +1,11 @@
 //main variables for the page to show
-var express        = require('express'),
-    app            = express(),
-    server        = require('http').createServer(app);
-var bodyParser    = require('body-parser');
-var path        = require('path');
-var mongoose    = require('mongoose');
-var session     = require('express-session');
+var express = require('express'),
+    app = express(),
+    server = require('http').createServer(app);
+var bodyParser = require('body-parser');
+var path = require('path');
+var mongoose = require('mongoose');
+var session = require('express-session');
 
 //for the mongodb
 require('./db/db');
@@ -29,33 +29,11 @@ app.use(session({
     cookie: {secure: false}
 }))
 
-
-// express framework node.js syntax
-// var authenticateRoute = function(request, response, next){
-//     if(request.originalUrl === '/' || request.originalUrl === '/'){
-//         next()
-//     }
-//         else {
-//             if(!request.session.loggedIn){
-//                 response.redirect('/confessions')
-//             }else{
-//                 next()
-//             }
-//         }
-//     }
-
-// app.use(authenticateRoute); //set this before controller!!!! It will run first!!!
-
-app.get('/confessions', function(req, res){
-    res.render('confessionsPage')
-})
-
 //express framework node.js syntax
 var authenticateRoute = function(request, response, next){
-    if(request.originalUrl === '/user/login' || request.originalUrl === '/user/register') {  // the login or register page
+    if(request.originalUrl === '/user/login' || request.originalUrl === '/user/register'){  // the login or register page
         next()
-    }
-    else {
+    }else{
         if(!request.session.loggedIn) {  // if user is not logged in, redirect
             response.redirect('/user/login')  // them to the login page
         }else{
@@ -66,17 +44,11 @@ var authenticateRoute = function(request, response, next){
 
 app.use(authenticateRoute); //set this before controller!!!! It will run first!!!
 
-app.use('/user', UserController);
-
 var UserController = require('./controllers/UserController');
 var ConfessionsController = require('./controllers/ConfessionsController');
 
-
+app.use('/user', UserController);
 app.use('/confessions', ConfessionsController);
-
-// app.get('/', function(req, res){
-//     res.render('registerLogin')
-// }) //this will grab the registerLogin page when the address is made
 
 //this is where the server is being shown
 server.listen(3000, function(){

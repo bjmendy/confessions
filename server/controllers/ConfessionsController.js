@@ -8,10 +8,8 @@ router.get('/', function(request, response){
 	Confession.find(function(error, confessions){
 		console.log(confessions);
 		//searches the database
-	//response.render('confessionsPage', {confessionArray: confessions});
+	response.render('confessionsPage', {confessionArray: confessions});
 	});
-	//console.log('confessions');
-	//response.render('confessionsPage');
 }); 
 
 router.post('/', function(request, response){
@@ -27,19 +25,18 @@ router.post('/', function(request, response){
 		}
 	});
 	response.redirect("/confessions");
-
 });
 
 router.patch('/:id', function(request, response){
-var id = request.params.id;
-var newInfo = request.body;
+	var id = request.params.id;
+	var newInfo = request.body;
 
-Confession.findById(id, function(err, confession){
-	confession.name = newInfo.username;
+	Confession.findById(id, function(err, confession){
+		confession.name = newInfo.username;
 
-		confession.save();
-		response.redirect('/');
-})
-	});
+			confession.save();
+			response.redirect('/');
+	})
+});
 
 module.exports = router;
