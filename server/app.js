@@ -46,10 +46,6 @@ app.use(session({
 
 // app.use(authenticateRoute); //set this before controller!!!! It will run first!!!
 
-app.get('/confessions', function(req, res){
-    res.render('confessionsPage')
-})
-
 //express framework node.js syntax
 var authenticateRoute = function(request, response, next){
     if(request.originalUrl === '/user/login' || request.originalUrl === '/user/register') {  // the login or register page

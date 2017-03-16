@@ -79,8 +79,10 @@ router.post('/register', function(request, response) {
                 bcrypt.hash(request.body.password, salt, function(error, hash) {
                     var hashedPasswordObject = {};
 
-                    hashedPasswordObject.username = request.body.username;
-                    hashedPasswordObject.password = hash;
+                    hashedPasswordObject.username   = request.body.username;
+                    hashedPasswordObject.password   = hash;
+                    hashedPasswordObject.firstName  = request.body.firstName;
+                    hashedPasswordObject.lastName   = request.body.lastName;
 
                     User.create(hashedPasswordObject, function(error, user) {
                         if (user) {
@@ -110,11 +112,6 @@ router.get('/logout', function(request, response) {
 	request.session.destroy(function(error) {
 		response.redirect('/login');
 	})
-
-    request.session.destroy(function(error) {
-        response.redirect('/user/login');
-    })
-
 })
 
 module.exports = router;

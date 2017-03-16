@@ -112,7 +112,7 @@ $('#closeModal').on('click', function() {
 
 //this is to logout//
 $('.logoutButton').on('click', function(request, response){
-  req.session.destroy(function(err){
-    res.redirect('/login')
+  request.session.destroy(function(err){
+    response.redirect('/login')
   })
 })

@@ -1,17 +1,54 @@
 var express = require('express');
 var router = express.Router();
 var Confession = require('../models/Confession.js');
+var User = require('../models/User.js');
 
 router.get('/', function(request, response){
 	console.log('get section of ConfessionController hit');
-	//response.send('Confession Page is Here!');
-	Confession.find(function(error, confessions){
-		console.log(confessions);
-		//searches the database
-	//response.render('confessionsPage', {confessionArray: confessions});
-	});
-	//console.log('confessions');
-	//response.render('confessionsPage');
+
+	var username = request.session.username;
+
+	User.findOne({username: username}, function(error, myName) {
+		if (!error) {
+
+			var name = myName.firstName + ' ' + myName.lastName;
+
+			Confession.find(function(error, confessions){
+				if (!error) {
+					Confession.find({username: username}, function(error, myConfessions){
+						if (!error) {
+							response.render('confessionsPage', {myName: name, myConfessionArray: myConfessions, confessionArray: confessions});
+						}
+						else {
+							console.log(error);
+						}
+					})
+				}
+				else {
+					console.log(error);
+				}
+			});
+
+		}
+		else {
+			console.log(error);
+		}
+	})
+	// Confession.find(function(error, confessions){
+	// 	if (!error) {
+	// 		Confession.find({username: username}, function(error, myConfessions){
+	// 			if (!error) {
+	// 				response.render('confessionsPage', {myConfessionArray: myConfessions, confessionArray: confessions});
+	// 			}
+	// 			else {
+	// 				console.log(error);
+	// 			}
+	// 		})
+	// 	}
+	// 	else {
+	// 		console.log(error);
+	// 	}
+	// });
 }); 
 
 router.post('/', function(request, response){
