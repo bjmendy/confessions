@@ -2,7 +2,7 @@
 	{{!-- Div for header --}}
 	<div class="header" id="confessionHeader">
 	  <div id="logoutButton" align="center">
-	        <button id="logout" class="logoutButton">Log Out</button>
+	        <a href="/user/logout"><button id="logout" class="logoutButton">Log Out</button></a>
 	        {{!-- this should link back via handlebars back to the homepage
 	         --}}
 	         </div>
@@ -32,9 +32,7 @@
 	        <h2>Post Your Confession</h2>
 	        {{!-- this box is where you will type in your posts, and and submit them out--}}
 	        <div id="confessionsBox" align="center">
-
 	            <form action="/confessions" method="POST" class="confForm">
-
 	            	<textarea type="text" name="confessionBox" value="" rows="1" cols="20"></textarea>
 	                {{!-- <input type="text" name="confessionBox" value=""/> --}}
 	                <button type="submit" class="postBtn">Post!</button>
@@ -50,7 +48,7 @@
 	        </div>
 	        {{!-- shows the countdown --}}
 	        <div id="countdownTimer" class="ctdTimer">
-	           <div id='timer'></div>
+	         {{!--   <div id='timer'></div> --}}
 	        </div>
 	        {{!-- standard logout button --}}	      
 	     </div>

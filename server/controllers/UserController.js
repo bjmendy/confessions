@@ -7,39 +7,32 @@ var bcrypt     = require('bcryptjs');
 
 router.get('/login', function(request, response) {
     console.log(request.session);
-     response.render('registerLogin', {});
+    response.render('registerLogin', {});
 });
 
 router.get('/register', function(request, response) {
     console.log(request.session);
-     response.render('registerLogin', {notRegistered: true});
+    response.render('registerLogin', {notRegistered: true});
 });
 
 
-router.post('/user/login', function(request, response){
-    // var user = new User({username: request.body.username, password: request.body.password});
-    // user.save();
-
-    // ////////////
-User.findOne({username: request.body.username}), function(error, user){
-    if (user){
-
-        bcypt.compare(password, user.password, function(error, match){ //make an object
-            //this method returns true or false
-            //true the passwords match
-            if(match){
-                request.session.username = user.username
-                request.session.userId = user.id
-                request.session.loggedIn = true
-                response.redirect('/confessions')
-
-            }else{
-                response.render('/user/login', {message: 'username was taken!'})
-            }
-        })
-            }
-
-        };
+// router.post('/user/login', function(request, response){
+// 	User.findOne({username: request.body.username}), function(error, user){
+// 		if (user){
+// 			bcypt.compare(password, user.password, function(error, match){ //make an object
+// 			//this method returns true or false
+// 			//true the passwords match
+// 				if(match){
+// 					request.session.username = user.username
+// 					request.session.userId = user.id
+// 					request.session.loggedIn = true
+// 					response.redirect('/confessions')
+// 				}else{
+// 					response.render('/user/login', {message: 'username was taken!'})
+// 				}
+// 			})
+// 		}
+// };
 
 router.post('/login', function(request, response) {
     console.log(request.body);
@@ -70,7 +63,7 @@ router.post('/login', function(request, response) {
     })
 })
 
-})
+// })
 
 router.post('/register', function(request, response) {
     console.log(request.body);
@@ -104,11 +97,7 @@ router.post('/register', function(request, response) {
         }
     })
 })
-//         else {
-//             response.render('registerLogin', {message: 'Sorry, that username is taken'});
-//         }
-//     })
-// }
+
 
 router.get('/logout', function(request, response) {
     request.session.destroy(function(error) {
