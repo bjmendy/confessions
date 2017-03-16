@@ -70,6 +70,8 @@ router.post('/login', function(request, response) {
 	})
 })
 
+})
+
 router.post('/register', function(request, response) {
 	console.log(request.body);
 	User.findOne({username: request.body.username}, function(error, user) {
@@ -91,12 +93,10 @@ router.post('/register', function(request, response) {
 						}
 						else {
 							console.log(error);
-<<<<<<< HEAD
+
 							response.redirect('/user/login');
 						}
-=======
-						}	response.redirect('/login');
->>>>>>> a75fe05ae20181ae7225181b2dee47fc4df9def5
+
 					})
 				})
 
