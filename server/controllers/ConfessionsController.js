@@ -11,7 +11,7 @@ router.get('/', function(request, response){
 	//response.render('confessionsPage', {confessionArray: confessions});
 	});
 	//console.log('confessions');
-	response.render('confessionsPage');
+	//response.render('confessionsPage');
 }); 
 
 router.post('/', function(request, response){
