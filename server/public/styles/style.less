@@ -271,8 +271,9 @@ textarea {
   height: 100vh;
   width: 23%;
   top: 0;
+  left: 0;
   text-align: center;
-  overflow: hidden;
+  overflow: auto;
  
 }
 .confForm{
@@ -377,24 +378,28 @@ textarea{
 
 #feed{
   background-color: rgba(0, 174, 125, .9);
-  margin-top: 10vh;
   height: 10vh;
   width: 130vh;
-  margin-left: 40px;
-  margin-right: 40px;
   border: 2px;
   border-color: rgb(254, 255, 239);
   border-style: solid;
   overflow: auto;
-  margin-bottom: 30px;
+  margin: 10vh 40px 30px 40px;
 
 }
-#myposts{
-  background-color: rgba(39, 65, 82, 1);
+
+#myPosts{
+  background-color: rgba(39, 65, 82, .8);
   border: 2px;
+  height: 10vh;
+  margin: 2vh 10px 30px 10px;
   border-color: rgb(254, 255, 239);
   border-style: solid;
   overflow: auto;
+}
+
+h4{
+  font-size: 20px;
 }
 
 
@@ -410,7 +415,6 @@ textarea{
   max-width: 100%;
   height: 400px;
   max-height: 100%;
-
   z-index: 1010;
 }
 
