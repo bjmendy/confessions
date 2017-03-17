@@ -45,6 +45,24 @@ $('.logoutButton').on('click', function(req, res){
   })
 });
 
+function reloadConfession() {
+  $.ajax({
+    url: '/confessions',
+    type: 'GET',
+    dataType: 'html',
+    success: function(result) {
+      $('#refreshMyPosts').html($(result).find('#refreshMyPosts').html());
+      $('#refreshFeed').html($(result).find('#refreshFeed').html());
+
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  })
+}
+
+setInterval('reloadConfession()', 10000); // refresh div after 5 secs
+
 
 //timer functions
 // window.setTimeout("Tick()", 1000);

@@ -10,12 +10,18 @@
 	    <div id="column-left">
 	        <h1>{{myName}}</h1>
 	        <h1>Your Posts</h1>
-{{#each myConfessionArray}}
-	        <div id="myPosts">
-	           {{!--  <h2>{{category}}</h2> --}}
-	            <p>{{confessionText}}</p>
-	        </div>
-{{/each}}
+
+			<div id="refreshMyPosts">
+
+				{{#each myConfessionArray}}
+		        <div id="myPosts">
+		           {{!--  <h2>{{category}}</h2> --}}
+		            <p>{{confessionText}}</p>
+		        </div>
+				{{/each}}
+
+			</div>
+
 	        {{!-- countdown timers show us how long a post has left to live--}}
 	        {{!-- <div id="countdownTimerLeft" align="right"> --}}
 	        	{{!-- <div id='timer'></div> --}}
@@ -36,14 +42,20 @@
 
 	                {{!-- need check box to include name if wanted--}}
 	            </form>
-	     	{{!-- this is where the feed comes together --}}	     	
-{{#each confessionArray}}
-	        <div id="feed" align="center">
-	            <div id="category"><h2>{{category}}</h2></div>
-	            <div id="name">{{!-- included name if box was checked, otherwise hidden div--}}</div>
-	            <h4>{{confessionText}}</h4>
-	        </div>
-{{/each}}
+	     	{{!-- this is where the feed comes together --}}
+
+			<div id="refreshFeed">
+
+				{{#each confessionArray}}
+		        <div id="feed" align="center">
+		            <div id="category"><h2>{{category}}</h2></div>
+		            <div id="name">{{!-- included name if box was checked, otherwise hidden div--}}</div>
+		            <h4>{{confessionText}}</h4>
+		        </div>
+				{{/each}}
+
+			</div>
+
 	        {{!-- shows the countdown --}}
 	        <div id="countdownTimer" class="ctdTimer">
 	        </div> 
