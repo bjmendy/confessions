@@ -29,12 +29,12 @@ router.post('/login', function(request, response) {
                     response.redirect('/confessions');  // successful login
                 }else{
                     console.log('redirect login hit');
-                    response.redirect('/user/login');
+                    response.render('registerLogin', {failedLogin: true});
                 }
             })
         }else {
             //console.log('redirect register hit');
-            response.redirect('/user/register');
+            response.render('registerLogin', {notRegistered: true});
         }
     })
 })
@@ -66,6 +66,9 @@ router.post('/register', function(request, response) {
                     })
                 })
             })
+        }
+        else {
+            response.render('registerLogin', {alreadyRegistered: true});
         }
     })
 });

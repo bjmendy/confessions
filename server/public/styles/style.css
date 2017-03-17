@@ -420,8 +420,7 @@ h4 {
   margin: 50px 0;
 }
 .modal button {
-  position: absolute;
-  bottom: 40px;
+  margin-top: 30%;
 }
 .modal-overlay {
   background-color: rgba(180, 180, 180, 0.8);

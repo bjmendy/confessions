@@ -20,6 +20,18 @@
         </div>
       {{/if}}
 
+      {{#if alreadyRegistered}}
+        <div id="modal" class="modal showModal">
+          <div class="modal-guts">
+            <h2>The username Is Already Taken</h2>
+            <p>Please choose another username to register. Click the OK button to continue.</p>
+            <button id="closeModal" class="button button-block">OK</button>
+          </div>
+        </div>
+        <div id="modal-overlay" class="modal-overlay showModal">
+        </div>
+      {{/if}}
+
       {{#if failedLogin}}
         <h1>Oops! Try Again.</h1>
         <h3>Usercode And Password Incorrect</h3>
@@ -80,7 +92,7 @@
               <input type="password" name="password" required autocomplete="off"/>
             </div>
             <p class="required">* Required</p>
-            <button type="submit" class="button button-block" name="button" value="next"/>Next</button>
+            <button type="submit" class="button button-block" name="button" value="next"/>Register</button>
         </form>
        </div>
     </div>
